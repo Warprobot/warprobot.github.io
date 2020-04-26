@@ -10,6 +10,10 @@
 	webkitTest
 	<video id="video" width="200" height="200" autoplay playsinline></video>
 	<script>
+		var constraints = {
+				audio: true,
+				video: true
+			};
 		if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 			var constraints = {
 				audio: true,
@@ -26,11 +30,12 @@
 				})
 				.catch(function(err) {
 					alert(err);
-					navigator.webkitGetUserMedia(constraints).then(function() {alert('success');}).catch(function(err){alert(err)})
 				});
 		} else {
 			alert("navigator.mediaDevices not supported")
 		}
+
+		navigator.webkitGetUserMedia(constraints).then(function() {alert('success');}).catch(function(err){alert(err)})
 	</script>
 </body>
 </html>
