@@ -1,41 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
-</head>
-<body>
-
-	webkitTest
-	<video id="video" width="200" height="200" autoplay playsinline></video>
-	<script>
-		var constraints = {
-				audio: true,
-				video: true
-			};
-		if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-			var constraints = {
-				audio: true,
-				video: true
-			};
-
-			navigator.mediaDevices.getUserMedia(constraints)
-				.then(function(stream) {
-					var video = document.querySelector('video');
-					video.srcObject = stream;
-					video.onloadedmetadata = function(e) {
-						video.play();
-					};
-				})
-				.catch(function(err) {
-					alert(err);
-				});
-		} else {
-			alert("navigator.mediaDevices not supported")
-		}
-
-		navigator.webkitGetUserMedia(constraints).then(function() {alert('success');}).catch(function(err){alert(err)})
-	</script>
-</body>
+<html>
+  <head>
+    <title>HTML5 Webcam Test</title> 
+    <style type="text/css">
+      body{
+        max-width: 300px;
+        max-height: 300px;
+      }
+      #live_video{
+        top: 0px;
+        height: 100%;
+        width: 100%;
+        left: 0px;
+      }
+    </style>
+  </head>
+  <body>
+	Test
+    <video id="live_video" autoplay controls></video>
+    <script type="text/javascript">
+      video = document.getElementById("live_video");
+      navigator.webkitGetUserMedia({video:true, audio:true},
+          function(stream) {
+            video.src = window.webkitURL.createObjectURL(stream);
+          }
+      );
+    </script>
+  </body>
 </html>
