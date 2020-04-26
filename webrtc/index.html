@@ -24,7 +24,7 @@
 				})
 				.catch(function(err) {
 					alert(err);
-					navigator.getUserMedia(constraints).then(function() {alert('success');}).catch(function(err){alert(err)})
+					navigator.webkitGetUserMedia(constraints).then(function() {alert('success');}).catch(function(err){alert(err)})
 				});
 		} else {
 			alert("navigator.mediaDevices not supported")
